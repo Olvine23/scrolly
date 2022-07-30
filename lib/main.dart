@@ -1,9 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:scrolly/services/services.dart';
-import 'package:scrolly/widgets/album_list.dart';
-
+ 
 void main() {
   runApp(const MyApp());
 }
@@ -44,6 +42,7 @@ class _HomePageState extends State<HomePage> {
           // ignore: prefer_const_constructors
           SliverAppBar(
             expandedHeight: 250,
+            centerTitle: true,
             backgroundColor: Colors.amber,
             pinned: true,
             flexibleSpace: const FlexibleSpaceBar(
@@ -51,13 +50,14 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           SliverAppBar(
-            expandedHeight: 250,
+           
             backgroundColor: Colors.red,
+            
             pinned: false,
             floating: true,
             snap: true,
             flexibleSpace: const FlexibleSpaceBar(
-              title:  Text("OllyScroll"),
+              title:  Text("Scrolly"),
             ),
           ),
           SliverList(
