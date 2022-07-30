@@ -11,22 +11,44 @@ Widget album(dynamic data) {
     final finalJson = json.decode(data[0]!);
 
     var allCast = finalJson.map((e) => Album.fromJson(e)).toList();
+    
 
-    return ListView.builder(
-        shrinkWrap: true,
-        physics: ScrollPhysics(),
-        itemCount: allCast.length,
-        itemBuilder: ((context, index) => Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            
 
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(allCast[index].title),
-                )
-          ],
-        )));
+
+
+    return SliverList(
+
+      delegate: SliverChildBuilderDelegate(
+        
+
+        (BuildContext context,index ){
+
+          Text(allCast[index].title);
+        },
+
+
+        childCount: allCast.length,
+
+
+      ),
+    
+      
+      // child: ListView.builder(
+      //     shrinkWrap: true,
+      //     physics: ScrollPhysics(),
+      //     itemCount: allCast.length,
+      //     itemBuilder: ((context, index) => Column(
+      //       crossAxisAlignment: CrossAxisAlignment.start,
+      //       children: [
+              
+    
+      //             Padding(
+      //               padding: const EdgeInsets.all(8.0),
+      //               child: Text(allCast[index].title),
+      //             )
+      //       ],
+      //     ))),
+    );
   }
 
   return Text("Error");

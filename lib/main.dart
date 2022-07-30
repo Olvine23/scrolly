@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:scrolly/services/services.dart';
 import 'package:scrolly/widgets/album_list.dart';
@@ -42,23 +44,41 @@ class _HomePageState extends State<HomePage> {
           // ignore: prefer_const_constructors
           SliverAppBar(
             expandedHeight: 250,
+            backgroundColor: Colors.amber,
             pinned: true,
             flexibleSpace: const FlexibleSpaceBar(
               title:  Text("OllyScroll"),
             ),
           ),
-          SliverToBoxAdapter(
-            child: Center(
-                child: FutureBuilder(
-                    future: ApiService.fetchAlbum(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return Center(child: album(snapshot.data));
-                      }
-
-                      return const CircularProgressIndicator();
-                    })),
-          )
+          SliverAppBar(
+            expandedHeight: 250,
+            backgroundColor: Colors.red,
+            pinned: false,
+            floating: true,
+            snap: true,
+            flexibleSpace: const FlexibleSpaceBar(
+              title:  Text("OllyScroll"),
+            ),
+          ),
+          SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index) {
+              return Card(
+                margin: const EdgeInsets.all(15),
+                child: Container(
+                  color: Colors.blue[100 * (index % 9 + 1)],
+                  height: 80,
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Item $index",
+                    style: const TextStyle(fontSize: 30),
+                  ),
+                ),
+              );
+            },
+            childCount: 1000, // 1000 list items
+          ),
+        ),
         ],
       ),
     );
